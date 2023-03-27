@@ -16,18 +16,18 @@ class CategoryVideoSeeder extends Seeder
      */
     public function run(): void
     {
-        $categories = Category::get()->all();
-        $videos = Video::get()->all();
+        $categoryIds = Category::pluck('id')->all();
+        $videoIds = Video::pluck('id')->all();
 
         $categoryVideo = [];
 
-        foreach ($categories as $category) {
-            $randomVideos = Arr::random($videos, mt_rand(1, count($videos)));
+        foreach ($categoryIds as $categoryId) {
+            $randomVideoIds = Arr::random($videoIds, mt_rand(1, count($videoIds)));
 
-            foreach ($randomVideos as $video) {
+            foreach ($randomVideoIds as $videoId) {
                 $categoryVideo[] = [
-                    'category_id' => $category['id'],
-                    'video_id' => $video['id'],
+                    'category_id' => $categoryId,
+                    'video_id' => $videoId,
                 ];
             }
         }

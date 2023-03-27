@@ -13,7 +13,7 @@ class ChannelSeeder extends Seeder
      */
     public function run(): void
     {
-        Channel::factory()->count(3)->create();
+        Channel::factory(3)->create();
 
         //----------> BU SEEDER-ORQALI
 //        $channels = [];

@@ -13,7 +13,7 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        Category::factory()->count(3)->create();
+        Category::factory(3)->create();
 
 //        //----------> BU SEEDER-ORQALI
 //        $categories = [];

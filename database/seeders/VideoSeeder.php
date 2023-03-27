@@ -13,7 +13,7 @@ class VideoSeeder extends Seeder
      */
     public function run(): void
     {
-        Video::factory()->count(3)->create();
+        Video::factory(3)->create();
 
         //----------> BU SEEDER-ORQALI
 //        $videos = [];
