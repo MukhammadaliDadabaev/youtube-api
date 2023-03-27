@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             ChannelSeeder::class,
             CategorySeeder::class,
             VideoSeeder::class,
-//            CategoryVideoSeeder::class,
+            CategoryVideoSeeder::class,
         ]);
 
 //-------------> 2. USUL
