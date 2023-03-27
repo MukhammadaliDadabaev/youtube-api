@@ -20,6 +20,10 @@ class VideoFactory extends Factory
         return [
             'title' => ucfirst($this->faker->words(mt_rand(1, 3), true)),
             'channel_id' => Channel::inRandomOrder()->first(),
+
+//-------------> 2. USUL
+//            'title' => ucfirst($this->faker->words(mt_rand(1, 3), true)),
+//            'channel_id' => Channel::factory(),
         ];
     }
 }
