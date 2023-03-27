@@ -11,38 +11,51 @@ use Illuminate\Support\Facades\DB;
 
 class CategoryVideoSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
+//    public function run(): void
+//    {
+//        $categoryIds = Category::pluck('id');
+//        $videoIds = Video::pluck('id');
+//
+//        $categoryVideo = [];
+//
+//        foreach ($categoryIds as $categoryId) {
+//            $randomVideoIds = Arr::random($videoIds, mt_rand(1, count($videoIds)));
+//
+//            foreach ($randomVideoIds as $videoId) {
+//                $categoryVideo[] = [
+//                    'category_id' => $categoryId,
+//                    'video_id' => $videoId,
+//                ];
+//            }
+//        }
+//
+//        DB::table('category_video')->insert($categoryVideo);
+//
+//
+////        //----------> BU SEEDER-ORQALI
+////        $categoryVideo = [];
+////        foreach (range(1, 3) as $i) {
+////            $categoryVideo[] = [
+////                'category_id' => $i,
+////                'video_id' => $i,
+////            ];
+////        }
+////        DB::table('category_video')->insert($categoryVideo);
+//    }
+
     public function run(): void
     {
-        $categoryIds = Category::pluck('id')->all();
-        $videoIds = Video::pluck('id')->all();
+        $categoryIds = Category::pluck('id');
+        $videoIds = Video::pluck('id');
 
-        $categoryVideo = [];
+        $categoryVideos = $categoryIds->map(function (int $id) use ($videoIds) {
+            return [
+                'category_id' => $id,
+                'video_id' => $videoIds->random(),
+            ];
+        });
 
-        foreach ($categoryIds as $categoryId) {
-            $randomVideoIds = Arr::random($videoIds, mt_rand(1, count($videoIds)));
+        DB::table('category_video')->insert($categoryVideos->all());
 
-            foreach ($randomVideoIds as $videoId) {
-                $categoryVideo[] = [
-                    'category_id' => $categoryId,
-                    'video_id' => $videoId,
-                ];
-            }
-        }
-
-        DB::table('category_video')->insert($categoryVideo);
-
-
-//        //----------> BU SEEDER-ORQALI
-//        $categoryVideo = [];
-//        foreach (range(1, 3) as $i) {
-//            $categoryVideo[] = [
-//                'category_id' => $i,
-//                'video_id' => $i,
-//            ];
-//        }
-//        DB::table('category_video')->insert($categoryVideo);
     }
 }
