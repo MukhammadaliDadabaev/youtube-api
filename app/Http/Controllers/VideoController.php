@@ -8,7 +8,7 @@ class VideoController extends Controller
 {
     public function index()
     {
-        $date = match ($request('period')) {
+        $date = match (request('period')) {
             'year' => now()->startOfYear(),
             'month' => now()->startOfMonth(),
             'week' => now()->startOfWeek(),
